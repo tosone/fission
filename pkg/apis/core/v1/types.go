@@ -353,6 +353,9 @@ type (
 		// Maximum number of pods to be specialized which will serve requests
 		// This is optional. If not specified default value will be taken as 5
 		Concurrency int `json:"concurrency,omitempty"`
+
+		// Image for containing the language runtime.
+		Image string `json:"image"`
 	}
 
 	// InvokeStrategy is a set of controls over how the function executes.
