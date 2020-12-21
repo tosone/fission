@@ -53,6 +53,10 @@ var (
 					Type:        "string",
 					Description: "Image of the function",
 				},
+				"port": {
+					Type:        "integer",
+					Description: "Port where the application runs on",
+				},
 			},
 		},
 	}

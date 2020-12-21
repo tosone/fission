@@ -39,6 +39,7 @@ import (
 	"github.com/fission/fission/pkg/error/network"
 	executorClient "github.com/fission/fission/pkg/executor/client"
 	"github.com/fission/fission/pkg/throttler"
+	"github.com/fission/fission/pkg/utils"
 )
 
 const (
@@ -150,6 +151,8 @@ func (roundTripper *RetryingRoundTripper) RoundTrip(req *http.Request) (*http.Re
 	roundTripper.addForwardedHostHeader(req)
 	transport := roundTripper.getDefaultTransport()
 	ocRoundTripper := &ochttp.Transport{Base: transport}
+	roundTripper.logger.Info(req.URL.Path)
+	roundTripper.logger.Info(req.URL.String())
 
 	executingTimeout := roundTripper.funcHandler.tsRoundTripperParams.timeout
 
@@ -180,6 +183,7 @@ func (roundTripper *RetryingRoundTripper) RoundTrip(req *http.Request) (*http.Re
 	var retryCounter int
 	var err error
 	var fnMeta = &roundTripper.funcHandler.function.ObjectMeta
+	roundTripper.logger.Info(fnMeta.Name)
 
 	for i := 0; i < roundTripper.funcHandler.tsRoundTripperParams.maxRetries; i++ {
 		// set service url of target service of request only when
@@ -221,14 +225,22 @@ func (roundTripper *RetryingRoundTripper) RoundTrip(req *http.Request) (*http.Re
 			// this service url comes from executor response
 			req.URL.Scheme = roundTripper.serviceURL.Scheme
 			req.URL.Host = roundTripper.serviceURL.Host
+			roundTripper.logger.Info(req.URL.Host)
+			roundTripper.logger.Info(req.RemoteAddr)
 
-			// To keep the function run container simple, it
-			// doesn't do any routing.  In the future if we have
-			// multiple functions per container, we could use the
-			// function metadata here.
-			// leave the query string intact (req.URL.RawQuery)
-			req.URL.Path = "/"
-
+			req.URL.Path = utils.RemoveFuncName(req.URL.Path, fnMeta.Name)
+			// req.URL.Path = strings.Trim(req.URL.Path, "/fission-function/")
+			roundTripper.logger.Info(req.URL.Path)
+			roundTripper.logger.Info(req.Host)
+			// headers := req.Header
+			// for k, v := range headers {
+			// 	roundTripper.logger.Info("Key is")
+			// 	roundTripper.logger.Info(k)
+			// 	for _, vv := range v {
+			// 		roundTripper.logger.Info("Value is")
+			// 		roundTripper.logger.Info(vv)
+			// 	}
+			// }
 			// Overwrite request host with internal host,
 			// or request will be blocked in some situations
 			// (e.g. istio-proxy)
