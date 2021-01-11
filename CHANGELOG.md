@@ -1,7 +1,8 @@
-# 1.11.2
-[Documentation](https://docs.fission.io/)
-## Downloads for 1.11.2
+# Fission
 
+[Documentation](https://docs.fission.io/)
+
+## Downloads for 1.11.2
 
 filename | sha256 hash
 -------- | -----------
@@ -17,7 +18,7 @@ filename | sha256 hash
 [fission-all-1.11.2-openshift.yaml](https://github.com/fission/fission/releases/download/1.11.2/fission-all-1.11.2-openshift.yaml) | `d40513512a26f28811ea30c17b51fadb4b39ba867c5cf99b0c008fb27b5e14eb`
 [fission-core-1.11.2-openshift.yaml](https://github.com/fission/fission/releases/download/1.11.2/fission-core-1.11.2-openshift.yaml) | `5de16081e1e5e9e83eb4c8adef6d86510888ed5dc618e6d31f9e5ec757ab8c8b`
 
-# Changelog
+## Changelog
 
 ## [v1.11.2](https://github.com/fission/fission/tree/v1.11.2) (2020-10-20)
 
@@ -215,7 +216,7 @@ filename | sha256 hash
 - Fix poolmanager sets 0 timeout for function specialization [\#1439](https://github.com/fission/fission/pull/1439) ([life1347](https://github.com/life1347))
 - Add huge response body test [\#1437](https://github.com/fission/fission/pull/1437) ([life1347](https://github.com/life1347))
 - Return error when specialization failed [\#1436](https://github.com/fission/fission/pull/1436) ([life1347](https://github.com/life1347))
--  Fix poolmanager terminates running function pod periodically [\#1435](https://github.com/fission/fission/pull/1435) ([life1347](https://github.com/life1347))
+- Fix poolmanager terminates running function pod periodically [\#1435](https://github.com/fission/fission/pull/1435) ([life1347](https://github.com/life1347))
 - Allow to tap multiple function services at one time [\#1434](https://github.com/fission/fission/pull/1434) ([life1347](https://github.com/life1347))
 - Collect function metrics after finishing request [\#1433](https://github.com/fission/fission/pull/1433) ([life1347](https://github.com/life1347))
 - Fix poolmanager crashes when failed to list environment [\#1432](https://github.com/fission/fission/pull/1432) ([life1347](https://github.com/life1347))
@@ -331,7 +332,7 @@ filename | sha256 hash
 - Update CHANGELOG for 1.5.0 [\#1304](https://github.com/fission/fission/pull/1304) ([life1347](https://github.com/life1347))
 - Fission 1.5.0 [\#1303](https://github.com/fission/fission/pull/1303) ([life1347](https://github.com/life1347))
 - Implement TLS authentication for kafka mqt [\#1300](https://github.com/fission/fission/pull/1300) ([vadasambar](https://github.com/vadasambar))
--  Issue 1229: Function level timeout [\#1284](https://github.com/fission/fission/pull/1284) ([parauliya](https://github.com/parauliya))
+- Issue 1229: Function level timeout [\#1284](https://github.com/fission/fission/pull/1284) ([parauliya](https://github.com/parauliya))
 - Fix kafka producer and consumer logs show empty objects [\#1281](https://github.com/fission/fission/pull/1281) ([vadasambar](https://github.com/vadasambar))
 
 ## [1.5.0](https://github.com/fission/fission/tree/1.5.0) (2019-09-09)
@@ -1199,6 +1200,3 @@ filename | sha256 hash
 - Router [\#3](https://github.com/fission/fission/pull/3) ([soamvasani](https://github.com/soamvasani))
 - NodeJS Function Run Container [\#2](https://github.com/fission/fission/pull/2) ([soamvasani](https://github.com/soamvasani))
 - Initial docs commit [\#1](https://github.com/fission/fission/pull/1) ([soamvasani](https://github.com/soamvasani))
-
-
-
