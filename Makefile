@@ -26,10 +26,10 @@ test-run:
 
 # ensure the changes are buildable
 build:
-	go build -o cmd/fission-bundle/fission-bundle ./cmd/fission-bundle/
-	go build -o cmd/fission-cli/fission ./cmd/fission-cli/
-	go build -o cmd/fetcher/fetcher ./cmd/fetcher/
-	go build -o cmd/fetcher/builder ./cmd/builder/
+	go build -v -o cmd/fission-bundle/fission-bundle ./cmd/fission-bundle/
+	go build -v -o cmd/fission-cli/fission ./cmd/fission-cli/
+	go build -v -o cmd/fetcher/fetcher ./cmd/fetcher/
+	go build -v -o cmd/builder/builder ./cmd/builder/
 
 # install CLI binary to $PATH
 install: build
@@ -37,12 +37,13 @@ install: build
 
 # build images (environment images are not included)
 image:
-	docker build -t fission-bundle -f cmd/fission-bundle/Dockerfile.fission-bundle .
 	docker build -t fetcher -f cmd/fetcher/Dockerfile.fission-fetcher .
 	docker build -t builder -f cmd/builder/Dockerfile.fission-builder .
+	docker build -t fission-bundle -f cmd/fission-bundle/Dockerfile.fission-bundle .
+	docker build -t builder -f cmd/preupgradechecks/Dockerfile.fission-preupgradechecks .
 
 clean:
 	@rm -f cmd/fission-bundle/fission-bundle
 	@rm -f cmd/fission-cli/fission
 	@rm -f cmd/fetcher/fetcher
-	@rm -f cmd/fetcher/builder
+	@rm -f cmd/builder/builder
